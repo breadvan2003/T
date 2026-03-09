@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Myth Test</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:"Courier New", monospace;
+    background:#0b3d91;
+    color:#b9e3ff;
+    overflow:hidden;
+}
+
+/* blueprint grid */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+    background-size:40px 40px;
+    opacity:0;
+    animation:gridFade 2s ease forwards;
+}
+
+/* container */
+.container{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    height:100vh;
+    text-align:center;
+}
+
+/* title blueprint draw animation */
+h1{
+    font-size:2.7rem;
+    letter-spacing:3px;
+    border-right:3px solid #b9e3ff;
+    white-space:nowrap;
+    overflow:hidden;
+    width:0;
+    animation:
+        typing 3s steps(30,end) 1s forwards,
+        blink .8s infinite;
+}
+
+@keyframes typing{
+    from{width:0}
+    to{width:20ch}
+}
+
+@keyframes blink{
+    50%{border-color:transparent}
+}
+
+/* buttons */
+.buttons{
+    margin-top:40px;
+    opacity:0;
+    animation:fadeButtons 1s ease forwards;
+    animation-delay:4s;
+}
+
+button{
+    background:transparent;
+    border:2px solid #b9e3ff;
+    color:#b9e3ff;
+    padding:12px 22px;
+    margin:10px;
+    font-size:1rem;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+button:hover{
+    background:#b9e3ff;
+    color:#0b3d91;
+}
+
+#result{
+    margin-top:30px;
+    font-size:1.3rem;
+}
+
+/* animations */
+
+@keyframes gridFade{
+    from{opacity:0}
+    to{opacity:1}
+}
+
+@keyframes fadeButtons{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>MYTH: YOU MISS ME</h1>
+
+<div class="buttons">
+<button onclick="choose('confirmed')">Confirmed</button>
+<button onclick="choose('plausible')">Plausible</button>
+<button onclick="choose('busted')">Busted</button>
+</div>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+
+function choose(option){
+
+const result=document.getElementById("result");
+
+if(option==="confirmed"){
+    result.innerHTML="✔ RESULT: CONFIRMED.";
+    result.style.color="#7CFFB2";
+}
+else{
+    result.innerHTML="✖ ERROR: Incorrect answer. Please try again.";
+    result.style.color="#ff8c8c";
+}
+
+}
+
+</script>
+
+</body>
+</html>
